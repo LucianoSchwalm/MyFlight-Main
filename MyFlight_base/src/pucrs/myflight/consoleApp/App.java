@@ -1,6 +1,5 @@
 package pucrs.myflight.consoleApp;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,8 +10,8 @@ import pucrs.myflight.modelo.CiaAerea;
 import pucrs.myflight.modelo.Geo;
 import pucrs.myflight.modelo.Rota;
 import pucrs.myflight.modelo.Voo;
+import pucrs.myflight.modelo.VooDireto;
 import pucrs.myflight.modelo.VooEscalas;
-import pucrs.myflight.modelo.VooVariasEscalas;
 
 public class App {
 
@@ -43,14 +42,10 @@ public class App {
 		Rota r3 = new Rota(c3, ap4, ap3, a2);
 		Rota r4 = new Rota(c1, ap2, ap4, a3);
 
-		Voo v1 = new Voo(r2, LocalDateTime.of(2016, 8, 10, 8, 0),Duration.ofMinutes(90));
+		Voo v1 = new VooDireto(r1, LocalDateTime.of(2016, 8, 10, 8, 0));
 		System.out.println("v1 --> " + v1);
-		Voo v2 = new Voo(r1, LocalDateTime.of(2016, 8, 10, 15, 0),Duration.ofHours(2));
+		Voo v2 = new VooEscalas(new ArrayList<Rota>(Arrays. asList(r1,r2,r3,r4)), LocalDateTime.of(2022, 5, 1, 4, 30));
 		System.out.println("v2 --> " + v2);
-		Voo v3 = new Voo(r3, LocalDateTime.of(2016, 8, 15, 12, 0),Duration.ofHours(2));
-		System.out.println("v3 --> " + v3);
-		Voo v4 = new Voo(r4, Duration.ofHours(2));
-		System.out.println("v4 --> " + v4);
 
 		System.out.println(Geo.distancia(ap1.getLocal(), ap2.getLocal()));
 		System.out.println(ap1.getLocal().distanciaPara(ap2.getLocal()));
